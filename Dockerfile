@@ -19,5 +19,5 @@ RUN git clone https://github.com/vitalif/grive2.git \
 	&& echo "Grive installation finished!"
 
 WORKDIR /drive
-ENTRYPOINT grive
+ENTRYPOINT /usr/local/bin/grive
 CMD []
