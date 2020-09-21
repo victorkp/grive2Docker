@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Paul Woelfel <github@frig.at>
+MAINTAINER Agustin Alexander <agustin.c.alexander@gmail.com>
 
 RUN apt-get update \
 	&& apt-get -y upgrade \
@@ -18,6 +18,7 @@ RUN git clone https://github.com/vitalif/grive2.git \
 	&& mkdir /drive \
 	&& echo "Grive installation finished!"
 
+COPY ./entrypoint.sh /root/entrypoint.sh
+RUN chmod 777 /root/entrypoint.sh
 WORKDIR /drive
-ENTRYPOINT ["/usr/local/bin/grive"]
-CMD []
+CMD ["/root/entrypoint.sh"]
