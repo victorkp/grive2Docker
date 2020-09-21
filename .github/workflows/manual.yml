@@ -1,4 +1,4 @@
-name: auto-build
+name: release
 on:
   release:
     types: [published]
