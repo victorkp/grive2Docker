@@ -1,8 +1,6 @@
 name: ci
 
 on:
-  push:
-    branches: master
   schedule:
     - cron: "0 0 1 * *" #run every month
 
@@ -29,6 +27,6 @@ jobs:
         uses: docker/build-push-action@v2 
         with:
           push: true
-          tags: agusalex/grive2:latest
+          tags: agusalex/grive2:snapshot
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
