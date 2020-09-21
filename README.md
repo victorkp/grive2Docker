@@ -16,7 +16,7 @@ docker pull agusalex/grive2
 - Create a new OAuth Client credential. Select TV as device type. You will be provided with a id and a secret. 
 - Save both **CLIENT_ID** and **SECRET** because you gonna need it for grive2.
 - Run this container again with these **ENV** options : 
-                    docker run -it -e **ID=YOURID** -e **SECRET=YOUR_CLIENT_SECRET**  -v /your/host/folder:/drive agusalex/grive2 
+                    ```docker run -it -e **ID=YOURID** -e **SECRET=YOUR_CLIENT_SECRET**  -v /your/host/folder:/drive agusalex/grive2 ```
 - Go to the provided URL -> Grant Access then copy and paste the **CODE** when prompted in the terminal
 - It will start sync
 - Enjoy Grive2!! 
