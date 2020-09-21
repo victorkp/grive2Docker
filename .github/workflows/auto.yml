@@ -3,6 +3,7 @@ name: auto-build
 on:
   schedule:
     - cron: "0 0 1 * *" #run every month
+  workflow_dispatch: #manual run
 
 jobs:
   main:
