@@ -28,6 +28,10 @@ Also if you already have your response code you can use this (warning this will 
 ```
 docker run -it -e ID=YOURID -e SECRET=YOUR_CLIENT_SECRET -e CODE=YOUR_CODE_RESPONSE -v /your/host/folder:/drive agusalex/grive2 
 ```
+You can grab your response code by appending your **CLIENT_ID** to this URL:
+
+https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code&client_id= **FILL_HERE_YOUR_CLIENT_ID**
+
 # Grive Setup
 
 You may override this container entrypoint for setting your own Grive configs for example syncing only one folder with -s etc.
