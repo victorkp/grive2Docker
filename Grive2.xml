@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Grive2</Name>
+  <Repository>agusalex/grive2</Repository>
+  <Registry>https://hub.docker.com/r/agusalex/grive2</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support/>
+  <Project>https://github.com/agusalex/grive2Docker</Project>
+  <Overview>Before you Start this Container:&#xD;
+1 - Go to https://console.developers.google.com/apis/library. Login with your Google account and create a new project on Google Cloud Platform. You can also use an existing one.&#xD;
+2 -Search for Google Drive API and enable it.&#xD;
+3 -Go to API Credentials page (https://console.developers.google.com/apis/credentials)&#xD;
+4 -Create a new OAuth Client credential. Select TV as device type. You will be provided with a id and a secret.&#xD;
+5 -Save both CLIENT_ID and SECRET because you gonna need it for grive2.&#xD;
+6- Got to this URL and append your CLIENT_ID&#xD;
+https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&amp;amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob&amp;amp;response_type=code&amp;amp;client_id= FILL_HERE_YOUR_CLIENT_ID&#xD;
+7- Give permission to the app and copy the CODE provided&#xD;
+8- Fill in this template with CLIENT_ID, SECRET and CODE&#xD;
+9- Run it the first time and let it start Sync&#xD;
+10- Once it starts you can now remove the CODE variable from this template to be safe&#xD;
+11- Enjoy Grive2 on Unraid!!&#xD;
+</Overview>
+  <Category>Backup: Cloud: Network:Other Productivity: Tools:</Category>
+  <WebUI>]</WebUI>
+  <TemplateURL/>
+  <Icon>https://github.com/agusalex/grive2Docker/raw/master/docker-drive.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1600730813</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Description>Backup your files to Google Drive using Grive2 client in a docker container
+</Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir/>
+      <ContainerDir>/drive</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>SET_YOUR_ID</Value>
+      <Name>ID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>SET_YOU_SECRET</Value>
+      <Name>SECRET</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Value>SET_YOUR_CODE</Value>
+      <Name>CODE</Name>
+      <Mode/>
+    </Variable>
+  </Environment>
+  <Labels/>
+  <Config Name="UNRAID_FOLDER" Target="/drive" Default="" Mode="rw" Description="Path to the unraid folder in which to sync the files, it also will contain .grive config file" Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="CLIENT_ID" Target="ID" Default="" Mode="" Description="Your Client ID obtained by doing the procedure in the description" Type="Variable" Display="always" Required="false" Mask="true"></Config>
+  <Config Name="SECRET" Target="SECRET" Default="" Mode="" Description="Your Client Secret obtained by doing the procedure in the description" Type="Variable" Display="always" Required="false" Mask="true"></Config>
+  <Config Name="CODE" Target="CODE" Default="" Mode="" Description="Your client secret obtained from the URL in the description&#13;&#10;Delete me after the setup is completed" Type="Variable" Display="always" Required="false" Mask="true"></Config>
+</Container>
