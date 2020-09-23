@@ -1,5 +1,4 @@
-
-name: release
+name: manual
 on:
   workflow_dispatch: #manual run
 jobs:
