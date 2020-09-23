@@ -1,8 +1,15 @@
 #!/bin/bash
+runGrive(){    
+    while :
+    do
+      grive
+      sleep 1
+    done
+}
 echo "Starting Grive2 Docker..."
 if [ -f /drive/.grive ]; then
     echo "Configuration Exists!"
-    grive
+    runGrive
 else
     if [ -z "$ID" ]; then
         echo "
@@ -23,11 +30,13 @@ else
         if [ -z "$CODE" ]; then
             echo "Configuration is missing...
                       Starting setup... "
-            grive -a --id $ID --secret $SECRET
+            grive -a --id $ID --secret $SECRET #First run is with params
+            runGrive #Then we loop
 
         else
             echo "Auto-Configuring with provided authCode..."
-            echo -ne "$CODE\n" | grive -a --id $ID --secret $SECRET
+            echo -ne "$CODE\n" | grive -a --id $ID --secret $SECRET #First run is with params
+            runGrive #Then we loop
         fi
     fi
 fi
