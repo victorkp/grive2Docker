@@ -1,4 +1,4 @@
-    
+#!/bin/bash   
 runGrive(){    
     while :
     do
@@ -7,8 +7,6 @@ runGrive(){
     done
 }
 
-
-#!/bin/bash
 echo "Starting Grive2 Docker..."
 if [ -f /usr/local/bin/drive/.grive ]; then
     echo "Configuration Exists!"
