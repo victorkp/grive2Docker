@@ -1,4 +1,4 @@
-FROM alpine:latest as build
+FROM alpine:3.7 as build
 
 RUN apk add git make cmake g++ libgcrypt-dev yajl-dev yajl \
     boost-dev curl-dev expat-dev cppunit-dev binutils-dev \
@@ -12,15 +12,17 @@ RUN apk add git make cmake g++ libgcrypt-dev yajl-dev yajl \
     && cd ../.. \
 	&& rm -rf grive2 \
 	&& mkdir /drive
-	
-FROM alpine:latest
+
+FROM alpine:3.7
 COPY --from=build /usr/local/bin/grive /bin/grive
 COPY ./entrypoint.sh /root/entrypoint.sh  
-RUN chmod 777 /root/entrypoint.sh /bin/grive \
+ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64 /bin/dumb-init
+RUN chmod 777 /root/entrypoint.sh /bin/dumb-init /bin/grive \
 	&& mkdir /drive \
 	&& apk add yajl-dev curl-dev libgcrypt \
 	boost-program_options boost-regex binutils-dev \
 	&& apk add boost-filesystem --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
 VOLUME /drive
 WORKDIR /drive
+ENTRYPOINT ["/bin/dumb-init", "--"]
 CMD ["/root/entrypoint.sh"]
