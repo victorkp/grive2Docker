@@ -1,12 +1,8 @@
-name: snapshot
-
+name: manual
 on:
-  schedule:
-    - cron: "0 0 1 * *" #run every month
   workflow_dispatch: #manual run
-
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -16,4 +12,4 @@ jobs:
         name: agusalex/grive2
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        tags: "snapshot"
+        tags: "latest"
