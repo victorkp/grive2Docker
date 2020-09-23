@@ -1,8 +1,10 @@
 # grive2Docker
 Docker Container for [grive2](https://github.com/vitalif/grive2).
 
-This container will be built automatically on docker hub every 1s of the month base on the master branch. 
 This will sync all Drive account's folders and files to a path specified
+
+This container's snapshot tag will be built automatically on docker hub every 1st of the month based on the master branch of grive2. 
+
 
 # Installation
 
