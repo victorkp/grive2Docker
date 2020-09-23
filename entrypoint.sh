@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Starting Grive2 Docker..."
-if [ -f /usr/local/bin/drive/.grive ]; then
+if [ -f /drive/.grive ]; then
     echo "Configuration Exists!"
-    /usr/local/bin/grive
+    grive
 else
     if [ -z "$ID" ]; then
         echo "
@@ -23,11 +23,11 @@ else
         if [ -z "$CODE" ]; then
             echo "Configuration is missing...
                       Starting setup... "
-            /usr/local/bin/grive -a --id $ID --secret $SECRET
+            grive -a --id $ID --secret $SECRET
 
         else
             echo "Auto-Configuring with provided authCode..."
-            echo -ne "$CODE\n" | /usr/local/bin/grive -a --id $ID --secret $SECRET
+            echo -ne "$CODE\n" | grive -a --id $ID --secret $SECRET
         fi
     fi
 fi
