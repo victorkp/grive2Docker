@@ -24,5 +24,5 @@ RUN chmod 777 /root/entrypoint.sh /bin/dumb-init /bin/grive \
 	&& apk add boost-filesystem --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
 VOLUME /drive
 WORKDIR /drive
-ENTRYPOINT ["/bin/dumb-init", "--"]
+ENTRYPOINT ["dumb-init", "--"]
 CMD ["/root/entrypoint.sh"]
