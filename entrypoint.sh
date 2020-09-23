@@ -1,24 +1,13 @@
-#!/bin/bash   
-runGrive(){    
-    while :
-    do
-      /usr/local/bin/grive
-      sleep 1
-    done
-}
-
+#!/bin/bash
 echo "Starting Grive2 Docker..."
 if [ -f /usr/local/bin/drive/.grive ]; then
     echo "Configuration Exists!"
-    runGrive
+    /usr/local/bin/grive
 else
     if [ -z "$ID" ]; then
         echo "
                 Configuration is missing...
-
-
                 First Time Setup (Action Required):	
-
                 - Go to https://console.developers.google.com/apis/library. Login with your Google account and create a new project on Google Cloud Platform. You can also use an existing one.
                 - Search for Google Drive API and enable it.
                 - Go to API Credentials page (https://console.developers.google.com/apis/credentials)
@@ -35,12 +24,10 @@ else
             echo "Configuration is missing...
                       Starting setup... "
             /usr/local/bin/grive -a --id $ID --secret $SECRET
-            runGrive
 
         else
             echo "Auto-Configuring with provided authCode..."
             echo -ne "$CODE\n" | /usr/local/bin/grive -a --id $ID --secret $SECRET
-            runGrive
         fi
     fi
 fi
