@@ -2,7 +2,7 @@
 runGrive(){    
     while :
     do
-      grive
+      grive $PARAMS
       sleep 1
     done
 }
@@ -30,12 +30,12 @@ else
         if [ -z "$CODE" ]; then
             echo "Configuration is missing...
                       Starting setup... "
-            grive -a --id $ID --secret $SECRET #First run is with params
+            grive $PARAMS -a --id $ID --secret $SECRET #First run is with params
             runGrive #Then we loop
 
         else
             echo "Auto-Configuring with provided authCode..."
-            echo -ne "$CODE\n" | grive -a --id $ID --secret $SECRET #First run is with params
+            echo -ne "$CODE\n" | grive $PARAMS -a --id $ID --secret $SECRET #First run is with params
             runGrive #Then we loop
         fi
     fi
