@@ -2,6 +2,7 @@
 Docker Container for [grive2](https://github.com/vitalif/grive2).
 
 This will sync all Drive account's folders and files to a path specified
+It runs on repeat on while true loop (this should be improved)
 
 This container's snapshot tag will be built automatically on docker hub every 1st of the month based on the master branch of grive2. 
 
