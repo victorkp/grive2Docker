@@ -16,4 +16,4 @@ jobs:
         name: agusalex/grive2
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        tag: snapshot
+        tags: "snapshot"
