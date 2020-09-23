@@ -1,24 +1,26 @@
-FROM debian:jessie
-MAINTAINER Agustin Alexander <agustin.c.alexander@gmail.com>
+FROM alpine:latest as build
 
-RUN apt-get update \
-	&& apt-get -y upgrade \
-	&& apt-get -y install git cmake build-essential libgcrypt11-dev libyajl-dev \
-    libboost-all-dev libcurl4-openssl-dev libexpat1-dev libcppunit-dev binutils-dev \
-	pkg-config \
-	&& rm -rf /var/lib/apt/lists/*
-RUN git clone https://github.com/vitalif/grive2.git \
+RUN apk add git make cmake g++ libgcrypt-dev yajl-dev yajl \
+    boost-dev curl-dev expat-dev cppunit-dev binutils-dev \
+	pkgconfig \
+	&& git clone https://github.com/vitalif/grive2.git \
 	&& mkdir grive2/build \
 	&& cd grive2/build  \
 	&& cmake ..  \
 	&& make -j4  \
 	&& make install \
-  && cd ../.. \
+    && cd ../.. \
 	&& rm -rf grive2 \
+	&& mkdir /drive
+	
+FROM alpine:latest
+COPY --from=build /usr/local/bin/grive /bin/grive
+COPY ./entrypoint.sh /root/entrypoint.sh  
+RUN chmod 777 /root/entrypoint.sh /bin/grive \
 	&& mkdir /drive \
-	&& echo "Grive installation finished!"
-
-COPY ./entrypoint.sh /root/entrypoint.sh
-RUN chmod 777 /root/entrypoint.sh
+	&& apk add yajl-dev curl-dev libgcrypt \
+	boost-program_options boost-regex binutils-dev \
+	&& apk add boost-filesystem --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
+VOLUME /drive
 WORKDIR /drive
 CMD ["/root/entrypoint.sh"]
