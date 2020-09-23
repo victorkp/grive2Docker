@@ -20,7 +20,7 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_a
 RUN chmod 777 /root/entrypoint.sh /bin/dumb-init /bin/grive \
 	&& mkdir /drive \
 	&& apk add yajl-dev curl-dev libgcrypt \
-	boost-program_options boost-regex binutils-dev \
+	boost-program_options boost-regex libstdc++ boost-system boost-dev binutils-dev \
 	&& apk add boost-filesystem --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
 VOLUME /drive
 WORKDIR /drive
