@@ -57,15 +57,14 @@ https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com
 
 # Grive Settings
 
-For setting your own Grive configs for example syncing only one folder with **--dir** you may use the PARAMS environmental variable as so:
+For setting your own Grive configs for example syncing only one folder with **-s** you may use the PARAMS environmental variable as so:
 ```
 docker run -it -e PARAMS="--path folder --force" agusalex/grive2 
 ```
 
 | Parameter| Description |
 |--|--|
-|**--path** your_folder |Root directory to sync  |
-|**--dir** your_folder|Single subdirectory to sync (remembered for next runs)  |
+|**-s** your_folder|Single subdirectory to sync (remembered for next runs)  |
 |**--ignore** regex |Perl RegExp to ignore files (matched against relative paths, remembered for next runs).  |
 |**--new-rev**|  Create new revisions in server for updated files.  |
 |**--force** |Force grive to always download a file from Google Drive instead of uploading it.  |
